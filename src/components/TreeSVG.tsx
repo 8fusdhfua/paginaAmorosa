@@ -85,8 +85,6 @@ interface TreeProps {
   timeText: string;
 }
 
-const BeautifulHeartPath = "M 0 -15 C 0 -30, 25 -30, 25 -15 C 25 -5, 0 15, 0 25 C 0 15, -25 -5, -25 -15 C -25 -30, 0 -30, 0 -15 Z";
-
 export const TreeSVG = forwardRef<SVGSVGElement, TreeProps>(({ onStart, timeText }, ref) => {
   return (
     <svg 
