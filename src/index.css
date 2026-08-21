@@ -228,3 +228,24 @@ body {
   100% { transform: rotate(0deg); }
 }
 
+
+/* Responsive adjustments for short screens (mobile landscape) */
+@media screen and (max-height: 600px) {
+  .text-layer {
+    padding: 2% 5%;
+  }
+  .romantic-message {
+    margin-top: 1%;
+    margin-left: 5%;
+    line-height: 1.3;
+    font-size: clamp(12px, 1.8vw, 16px);
+    max-width: 50%;
+  }
+  .romantic-message p {
+    margin: 8px 0;
+  }
+  .payoff-text {
+    margin-top: 15px;
+  }
+}
+
