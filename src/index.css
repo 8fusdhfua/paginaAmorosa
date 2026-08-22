@@ -23,7 +23,7 @@ body {
   display: flex;
   place-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 100dvh;
   overflow: hidden;
   background: var(--cream);
 }
@@ -32,7 +32,7 @@ body {
 .scene-container {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   background-color: var(--cream);
   overflow: hidden;
   display: flex;
@@ -160,7 +160,7 @@ body {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   z-index: 99999;
   display: flex;
   justify-content: center;
@@ -246,6 +246,28 @@ body {
   }
   .payoff-text {
     margin-top: 15px;
+  }
+}
+
+
+/* Responsive adjustments for short screens (mobile landscape) */
+@media screen and (max-height: 600px) {
+  .text-layer {
+    padding: 0 5%;
+    justify-content: center; /* Keep text vertically centered properly */
+  }
+  .romantic-message {
+    margin-top: 0;
+    margin-left: 12%; /* Push text further right closer to the tree */
+    line-height: 1.4;
+    font-size: clamp(12px, 3.5vh, 18px); /* Scale dynamically with height so it never cuts off */
+    max-width: 48%;
+  }
+  .romantic-message p {
+    margin: 5px 0;
+  }
+  .payoff-text {
+    margin-top: 8px;
   }
 }
 

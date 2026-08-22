@@ -49,9 +49,20 @@ export default function ValentineScene() {
     
   }, []);
 
-  const handleStart = () => {
+  const handleStart = async () => {
     if (hasStarted) return;
     setHasStarted(true);
+    
+    // Request fullscreen to hide the mobile browser URL bar!
+    try {
+      if (document.documentElement.requestFullscreen) {
+        await document.documentElement.requestFullscreen();
+      } else if ((document.documentElement as any).webkitRequestFullscreen) {
+        await (document.documentElement as any).webkitRequestFullscreen();
+      }
+    } catch (e) {
+      console.log("Fullscreen API not supported or blockd.");
+    }
     
     tlRef.current = gsap.timeline();
     const tl = tlRef.current;

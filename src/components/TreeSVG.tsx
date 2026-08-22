@@ -123,7 +123,7 @@ export const TreeSVG = forwardRef<SVGSVGElement, TreeProps>(({ onStart, timeText
             dominantBaseline="central"
             className="btn-heart-pulse"
           >
-            ⏾
+            🌓
           </text>
           
           {/* Callout Line */}

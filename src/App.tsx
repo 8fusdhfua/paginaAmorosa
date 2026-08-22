@@ -40,7 +40,6 @@ function App() {
               <Smartphone size={64} strokeWidth={1.5} color="white" />
             </div>
             <h2>Por favor, gira tu celular</h2>
-            <p>Para vivir esta experiencia romántica ❤️</p>
           </div>
         </div>
       )}
