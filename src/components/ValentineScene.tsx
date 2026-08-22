@@ -11,15 +11,33 @@ const splitText = (text: string) => {
   ));
 };
 
-export default function ValentineScene() {
+interface Props {
+  isPortrait: boolean;
+}
+
+export default function ValentineScene({ isPortrait }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
+  const leavesTlRef = useRef<gsap.core.Timeline[]>([]);
   
   const [hasStarted, setHasStarted] = useState(false);
   // Updated start date as requested
   const startDate = new Date('2025-01-04T00:00:00'); 
   const timeText = useDuration(startDate);
+
+  // Pause or resume the animation based on orientation
+  useEffect(() => {
+    if (tlRef.current) {
+      if (isPortrait) {
+        tlRef.current.pause();
+        leavesTlRef.current.forEach(tl => tl.pause());
+      } else {
+        tlRef.current.resume();
+        leavesTlRef.current.forEach(tl => tl.resume());
+      }
+    }
+  }, [isPortrait]);
 
   useEffect(() => {
     const svg = svgRef.current;
@@ -126,6 +144,7 @@ export default function ValentineScene() {
     // Stage 7: Falling Leaves blowing towards the text (leftwards)
     gsap.utils.toArray('.float-heart').forEach((leaf: any) => {
       const tlLeaf = gsap.timeline({ repeat: -1, delay: 4.5 + Math.random() * 3 });
+      leavesTlRef.current.push(tlLeaf);
       
       const startX = parseFloat(leaf.getAttribute('data-x'));
       const startY = parseFloat(leaf.getAttribute('data-y'));

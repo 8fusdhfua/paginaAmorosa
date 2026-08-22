@@ -10,14 +10,16 @@ function App() {
   const [showOverlay, setShowOverlay] = useState(getIsPortrait());
 
   useEffect(() => {
+    let timeoutId: any;
     const handleResize = () => {
       const portrait = getIsPortrait();
       setIsPortrait(portrait);
       if (portrait) {
+        clearTimeout(timeoutId);
         setShowOverlay(true);
       } else {
         // Wait for the CSS expanding hole animation to finish before unmounting
-        setTimeout(() => setShowOverlay(false), 1200);
+        timeoutId = setTimeout(() => setShowOverlay(false), 1200);
       }
     };
     
@@ -44,7 +46,7 @@ function App() {
         </div>
       )}
 
-      <ValentineScene />
+      <ValentineScene isPortrait={isPortrait} />
     </div>
   );
 }
